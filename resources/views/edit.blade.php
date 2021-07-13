@@ -10,6 +10,18 @@
 </head>
 <body>
 
+    @if(Session('successDelete'))
+    <div class="alert alert-danger" role="alert">
+    {{Session('successDelete')}}
+    </div>
+    @endif
+
+     @if(Session('successUpdate'))
+    <div class="alert alert-danger" role="alert">
+    {{Session('successUpdate')}}
+    </div>
+    @endif
+
 <form action="{{url('/updatebook/'.$book->id)}}" method="POST" enctype="multipart/form-data">
 @csrf
     <Strong>Isbn no</Strong></br>
@@ -25,7 +37,7 @@
     <input type="text" name="published_year" value="{{$book->published_year}}"></br>
 
     <Strong>Book image</Strong></br>
-    <input type="file" name="book_image" value="{{$book->book_image}}"></br>
+    <input type="file" name="book_image"></br>
 
     <Strong>Price</Strong></br>
     <input type="text" name="price"value="{{$book->price}}" ></br>

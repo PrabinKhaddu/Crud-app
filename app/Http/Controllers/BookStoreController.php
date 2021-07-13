@@ -26,18 +26,15 @@ class BookStoreController extends Controller
 
     public function update(Request $request,$id)
     {
-        $request->validate([
-            'image'=>'mimes:jepg,jpg,png',
-        ]);
-        $book = book::find($id);
-        if($request->file('image')){
-            $oldImagePath = public_path().'/uploads/'.$product->image;
+        $book = Book::find($id);
+        if($request->file('book_image')){
+            $oldImagePath = public_path().'/uploads/'.$book->book_image;
             @unlink($oldImagePath);
-            $file = $request->file('image');
+            $file = $request->file('book_image');
             $storeimage = date('ymds').'.'.$file->getClientOriginalExtension();
             $file->move(public_path('uploads/'), $storeimage);
-            $product->update([
-                'image'=>$storeimage
+            $book->update([
+                'book_image'=>$storeimage
             ]);
         }
         
@@ -46,8 +43,7 @@ class BookStoreController extends Controller
             'title'=>$request -> title,
             'author'=>$request -> author,
             'published_year'=>$request ->published_year,
-            'book_image'=>$request ->book_image,
-            'price'=>$request ->price
+            'price'=>$request ->price,
 
         ]);
         return redirect('/')->with('successUpdate','Book updated successfully');
@@ -58,10 +54,10 @@ class BookStoreController extends Controller
     public function delete($id)
     {
         $book = Book::Find($id);
-        $imagePath = public_path().'/uploads/'.$product->image;
+        $imagePath = public_path().'/uploads/'.$book->book_image;
         $book->delete();
         @unlink($imagePath);
-        return redirect()->back()->with('successDelete','Bookdetails deleted succefully');
+        return back()->with('successDelete','Bookdetails deleted succefully');
     }
 
     public function view()

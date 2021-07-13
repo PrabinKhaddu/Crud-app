@@ -10,11 +10,22 @@
      <title>Document</title>
 </head>
 <body>
+    @if(Session('successDelete'))
+    <div class="alert alert-danger" role="alert">
+    {{Session('successDelete')}}
+    </div>
+    @endif
 
-
+     @if(Session('successUpdate'))
+    <div class="alert alert-danger" role="alert">
+    {{Session('successUpdate')}}
+    </div>
+    @endif
+    
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">id</th>
       <th scope="col">isbn_no</th>
       <th scope="col">title</th>
       <th scope="col">author</th>
@@ -38,7 +49,7 @@
       <td>{{$kitab->price}}</td>
 
       <td>
-        <form action="{{url('/deleteBook/'.$kitab->id)}}"> <!-- " . " le chai concat gareko  -->
+        <form action="{{url('/deleteBook/'.$kitab->id)}}"> 
         <input type="submit" value="delete">
       </form>
       </td>

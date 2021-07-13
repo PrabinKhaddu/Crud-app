@@ -15,21 +15,13 @@
     </div>
     @endif
 
-    @if(Session('successDelete'))
-    <div class="alert alert-danger" role="alert">
-    {{Session('sessionDelete')}}
-    @endif
-    </div>
-
     @if(Session('successUpdate'))
     <div class="alert alert-danger" role="alert">
-    {{Session('sessionUpdate')}}
-    @endif
+    {{Session('successUpdate')}}
     </div>
+    @endif
 
     <h1>BOOK STORE</h1>
-
-   
 
     <form action="{{url('addbook')}}" method="POST" enctype="multipart/form-data">
     @csrf

@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('published_year');
-            $table->mediumText('book_image')->nullable();
+            $table->String('book_image')->nullable();
             $table->float('price');
             $table->timestamps();
         });
